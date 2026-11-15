@@ -11,6 +11,7 @@ def cargar_paises(archivo_csv):
     try:
         with open(archivo_csv, "r", encoding="utf-8") as archivo:
             lector = csv.DictReader(archivo)
+            # Conservamos las filas válidas y avisamos al menú si debe bloquear el guardado.
             for fila in lector:
                 if not all(isinstance(fila.get(campo), str) and fila[campo].strip()
                     for campo in ["nombre", "poblacion", "superficie", "continente"]):
@@ -95,6 +96,7 @@ def buscar_pais(paises, busqueda):
 
 def normalizar(texto):
     texto = texto.lower().strip()
+    # NFD separa las letras de las marcas de acentuación para poder compararlas.
     texto = unicodedata.normalize("NFD", texto)
     texto = "".join(
         caracter for caracter in texto
@@ -172,12 +174,12 @@ def promedio_de_superficie(paises):
 
 def contar_paises_por_continente(paises):
     cantidades = {}
+    etiquetas = {}
     for pais in paises:
-        continente = pais["continente"]
-        if continente in cantidades:
-            cantidades[continente] += 1
-        else:
-            cantidades[continente] = 1
+        continente = pais["continente"].strip()
+        # Agrupamos por la clave normalizada y mostramos la primera grafía del CSV.
+        etiqueta = etiquetas.setdefault(normalizar(continente), continente)
+        cantidades[etiqueta] = cantidades.get(etiqueta, 0) + 1
     return cantidades
 
 
@@ -206,6 +208,7 @@ def mostrar_menu():
 
 def menu_principal():
 
+    # La lectura y el guardado comparten la ruta aunque se ejecute desde otra carpeta.
     ruta_csv = os.path.join(os.path.dirname(__file__), "paises.csv")
     paises, hay_errores = cargar_paises(ruta_csv)
     while True:

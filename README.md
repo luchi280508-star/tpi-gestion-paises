@@ -29,7 +29,7 @@ Ingresá la población en habitantes y la superficie en km² como enteros positi
 
 ## Datos incluidos
 
-El CSV está codificado en UTF-8. Su encabezado es `nombre,poblacion,superficie,continente`. Incluye Argentina, Japón, Brasil y un cuarto registro denominado `mamam`. Se conserva el archivo recibido como dataset de práctica. Los resultados describen esas cuatro filas. El filtro por continente reúne `América` y `america`, mientras que el conteo estadístico las muestra por separado porque usa el texto original.
+El CSV está codificado en UTF-8. Su encabezado es `nombre,poblacion,superficie,continente`. El dataset base contiene Argentina, Japón, Brasil y Alemania. Tanto el filtro como el conteo por continente agrupan variantes como `América` y `america`. El resumen muestra la primera grafía encontrada.
 
 ## Ejemplos de entrada y salida
 
@@ -53,13 +53,13 @@ continente: América
 ```text
 estadisticas
 mayor poblacion: Brasil
-menor poblacion: mamam
-promedio de poblacion: 96873383.25
-promedio de superficie: 3054899.0
+menor poblacion: Argentina
+promedio de poblacion: 117079875.0
+promedio de superficie: 3007791.0
 paises por continente:
 América : 2
 Asia : 1
-america : 1
+Europa : 1
 ```
 
 ## Participación de los integrantes
