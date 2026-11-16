@@ -29,17 +29,17 @@ Ingresá la población en habitantes y la superficie en km² como enteros positi
 
 ## Datos incluidos
 
-El CSV está codificado en UTF-8. Su encabezado es `nombre,poblacion,superficie,continente`. El dataset base contiene Argentina, Japón, Brasil y Alemania. Tanto el filtro como el conteo por continente agrupan variantes como `América` y `america`. El resumen muestra la primera grafía encontrada.
+El CSV está codificado en UTF-8. Su encabezado es `nombre,poblacion,superficie,continente`. El dataset de prueba contiene 271 registros, incluido `mamam`. El programa carga 248 y omite 23 por campos vacíos o valores numéricos inválidos. Con este archivo se pueden realizar consultas. Las altas y actualizaciones quedan bloqueadas hasta corregir las filas rechazadas y reiniciar. Las estadísticas incluyen los duplicados y los nombres ficticios que pasan la validación. Tanto el filtro como el conteo por continente agrupan variantes como `América` y `america`. El resumen muestra la primera grafía encontrada.
 
 ## Ejemplos de entrada y salida
 
-**Buscar Argentina.** Ingresá `3` y después `arg`. La consola muestra:
+**Buscar mamam.** Ingresá `3` y después `mamam`. La consola muestra:
 
 ```text
-Argentina
-poblacion: 45376763
-superficie: 2780400 km²
-continente: América
+mamam
+poblacion: 2323333
+superficie: 545454 km²
+continente: america
 ```
 
 **Filtrar por superficie exacta.** Ingresá `4` (filtrar), `3` (superficie), `377975` como mínimo y `377975` como máximo. El único resultado es:
@@ -52,14 +52,28 @@ continente: América
 
 ```text
 estadisticas
-mayor poblacion: Brasil
-menor poblacion: Argentina
-promedio de poblacion: 117079875.0
-promedio de superficie: 3007791.0
+mayor poblacion: Mundo
+menor poblacion: ErrorMuchosCampos
+promedio de poblacion: 73707555.65
+promedio de superficie: 2898895.83
 paises por continente:
-América : 2
-Asia : 1
-Europa : 1
+América : 41
+Asia : 50
+Europa : 59
+Oceanía : 19
+África : 65
+Amérika : 1
+Fantasia : 2
+Asia/Europa : 1
+Amercia : 1
+Euro : 1
+Antártida : 1
+3 : 1
+america del norte : 1
+Europa/Asia : 1
+Gran Bretaña : 1
+Tierra : 1
+Tierra Media : 2
 ```
 
 ## Participación de los integrantes
