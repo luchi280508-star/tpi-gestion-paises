@@ -1,8 +1,14 @@
 import csv
 import os
 import unicodedata
-from colorama import Style, Fore, Back, init
-init(autoreset=True)
+try:
+    from colorama import Style, Fore, Back, init
+    init(autoreset=True)
+except ImportError:
+    class _Color:
+        def __getattr__(self, name):
+            return ""
+    Style = Fore = Back = _Color()
 
 
 def cargar_paises(archivo_csv):
@@ -11,24 +17,20 @@ def cargar_paises(archivo_csv):
     try:
         with open(archivo_csv, "r", encoding="utf-8") as archivo:
             lector = csv.DictReader(archivo)
-            # Conservamos las filas válidas y avisamos al menú si debe bloquear el guardado.
             for fila in lector:
                 if not all(isinstance(fila.get(campo), str) and fila[campo].strip()
                     for campo in ["nombre", "poblacion", "superficie", "continente"]):
                     print(Fore.RED + "error en esta fila:", fila)
                     print(Fore.RED + "error hay campos vacios o faltantes")
-                    hay_errores = True
                     continue
                 try:
                     poblacion = int(fila["poblacion"])
                     superficie = int(fila["superficie"])
                     if poblacion <= 0 or superficie <= 0:
-                        print(Fore.RED + "error valores numericos invalidos")
-                        hay_errores = True
+                        print(Fore.RED + "error valores numericos invalidos en:", fila.get("nombre", ""))
                         continue
                 except ValueError:
-                    print(Fore.RED + "error poblacion o superficie invalida")
-                    hay_errores = True
+                    print(Fore.RED + "error poblacion o superficie invalida en:", fila.get("nombre", ""))
                     continue
                 pais = {
                     "nombre": fila["nombre"].strip(),
@@ -96,7 +98,6 @@ def buscar_pais(paises, busqueda):
 
 def normalizar(texto):
     texto = texto.lower().strip()
-    # NFD separa las letras de las marcas de acentuación para poder compararlas.
     texto = unicodedata.normalize("NFD", texto)
     texto = "".join(
         caracter for caracter in texto
@@ -174,13 +175,19 @@ def promedio_de_superficie(paises):
 
 def contar_paises_por_continente(paises):
     cantidades = {}
-    etiquetas = {}
+    nombres = {}
     for pais in paises:
         continente = pais["continente"].strip()
-        # Agrupamos por la clave normalizada y mostramos la primera grafía del CSV.
-        etiqueta = etiquetas.setdefault(normalizar(continente), continente)
-        cantidades[etiqueta] = cantidades.get(etiqueta, 0) + 1
-    return cantidades
+        clave = normalizar(continente)
+        if clave in cantidades:
+            cantidades[clave] += 1
+        else:
+            cantidades[clave] = 1
+            nombres[clave] = continente.capitalize()
+    resultado = {}
+    for clave, cantidad in cantidades.items():
+        resultado[nombres[clave]] = cantidad
+    return resultado
 
 
 def guardar_paises(paises, archivo_csv):
@@ -208,7 +215,6 @@ def mostrar_menu():
 
 def menu_principal():
 
-    # La lectura y el guardado comparten la ruta aunque se ejecute desde otra carpeta.
     ruta_csv = os.path.join(os.path.dirname(__file__), "paises.csv")
     paises, hay_errores = cargar_paises(ruta_csv)
     while True:
@@ -300,16 +306,19 @@ def menu_principal():
                     print(Fore.RED + "no se encontraron paises")
                 else:
                     for pais in resultados:
-                        print(pais)
+                        print(Fore.GREEN + pais["nombre"])
+                        print(Fore.YELLOW + "poblacion:", pais["poblacion"])
+                        print(Fore.YELLOW + "superficie:", pais["superficie"], "km²")
+                        print(Fore.YELLOW + "continente:", pais["continente"])
             case "5":
-                print (Fore.RED + "como desea ordernar los paises: ")
+                print (Fore.RED + "como desea ordenar los paises: ")
                 print (Fore.YELLOW + "1. por nombre")
                 print (Fore.YELLOW + "2. por poblacion")
                 print (Fore.YELLOW + "3. por superficie")
                 criterio = input (Back.BLUE + "seleccione una opcion 1/3: ")
                 sentido = input (Back.BLUE + "orden descendente? (s/n): ").lower().strip()
                 if sentido not in ["s", "n"]:
-                    print (Fore.RED + "sentido invaldo")
+                    print (Fore.RED + "sentido invalido")
                 else:
                     descendente = sentido == "s"
                     if criterio == "1":
@@ -324,7 +333,10 @@ def menu_principal():
                         print (Fore.RED + "criterio invalido")
                     else:
                         for pais in resultados:
-                            print(Fore.GREEN + str(pais))
+                            print(Fore.GREEN + pais["nombre"])
+                            print(Fore.YELLOW + "poblacion:", pais["poblacion"])
+                            print(Fore.YELLOW + "superficie:", pais["superficie"], "km²")
+                            print(Fore.YELLOW + "continente:", pais["continente"])
             case "6":
                 resultado = mayor_menor_poblacion(paises)
                 if resultado is None:

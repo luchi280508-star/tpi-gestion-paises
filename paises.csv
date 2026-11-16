@@ -41,7 +41,6 @@ PaísSinDatos,,,
 Argentina,45376763,2780400,América
 Turquía,84339067,783562,Asia/Europa
 Irán,83992949,1648195,Asía
-Venezuela,28435940,916445,Amercia
 Colombia,50882891,1141748,América
 Vietnam,97338579,331212,Asia
 Kenia,53771296,580367,África
@@ -207,33 +206,25 @@ Comoras,869601,1862,África
 Seychelles,98347,455,África
 Mauricio,1271768,2040,África
 paisesinmombre,100,100,Europa
-12345,67890,12345,Asia
 OtroPais,-1,-1,Antartida
 Espacios   ,  1000  ,  2000  ,  América  
-NombreLargoQueNoDeberiaExistirComoPaisRealPeroEstaAquiParaProbar,9999999,888888,Europa
 IslaInventada,500,250,Oceanía
 Reino de Prueba,123456,654321,Europa
 PaisDuplicado,111111,222222,África
 PaisDuplicado,111111,222222,África
 ErrorFilaIncompleta,12345
-ErrorMuchosCampos,1,2,3,4,5,6
 ,0,0,
-null,null,null,null
-NaN,NaN,NaN,NaN
 Alemania,83149300,357022,europa
 Francia,67.391.582,551695,Europa
 Italia,"59554023",301340,Europa
 España,47351567,505990.5,Europa
 Canadá,38005238,9.984.670,América
-México,128932753,1964375,america del norte
 Brasil,213993437,8515767,AMERICA
-Rusia,145912025,17098242,Europa/Asia
 Egipto,102334404,1002450,Africa
 Turquia,84339067,783562,Asia
 NuevaZelanda,5084300,268838,Oceania
 CoreaDelSur,51780579,100210,Asia
 Sudafrica,59308690,1219090,Africa
-ReinoUnido,67215293,243610,Gran Bretaña
 Estados Unidos,331002651,9833517,América
 ,,, 
 ZZZPais,0,0,Desconocido
@@ -248,7 +239,6 @@ EstadosFederados,100000,50000,Oceanía
 PaisConSalto,1000,2000,Europa
 "PaisConComillas",5000,6000,Asia
 País;Con;PuntoYComa,7000,8000,África
-Mundo,7800000000,510072000,Tierra
 Atlantis,0,0,Océano
 Wakanda,5000000,30000,África
 Genovia,1000000,5000,Europa
@@ -257,8 +247,6 @@ Sokovia,3000000,15000,Europa
 Madripoor,2000000,1000,Asia
 Elbonia,4000000,80000,Europa
 Panem,10000000,200000,América
-Gondor,500000,150000,Tierra Media
-Rohan,200000,100000,Tierra Media
 Hyrule,1000000,50000,Fantasia
 Kanto,5000000,30000,Asia
 Sinnoh,4000000,25000,Asia

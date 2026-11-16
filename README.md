@@ -25,11 +25,11 @@ Si tu sistema usa `python3` o `py`, usá ese comando en ambas líneas. Elegí un
 | 6 | Ver estadísticas | Muestra extremos, promedios y cantidad por continente. |
 | 7 | Salir | Finaliza la sesión. |
 
-Ingresá la población en habitantes y la superficie en km² como enteros positivos, sin separadores de miles. Si al cargar el archivo se detectan filas con campos vacíos o números inválidos, el programa permite consultar las filas válidas y bloquea los cambios. Corregí el CSV y reiniciá el programa.
+Ingresá la población en habitantes y la superficie en km² como enteros positivos, sin separadores de miles. Si al cargar el archivo se detectan filas con campos vacíos o números inválidos, el programa informa el error, omite esas filas y continúa. Al guardar un alta o una actualización, reescribe el CSV con los registros cargados.
 
 ## Datos incluidos
 
-El CSV está codificado en UTF-8. Su encabezado es `nombre,poblacion,superficie,continente`. El dataset de prueba contiene 271 registros, incluido `mamam`. El programa carga 248 y omite 23 por campos vacíos o valores numéricos inválidos. Con este archivo se pueden realizar consultas. Las altas y actualizaciones quedan bloqueadas hasta corregir las filas rechazadas y reiniciar. Las estadísticas incluyen los duplicados y los nombres ficticios que pasan la validación. Tanto el filtro como el conteo por continente agrupan variantes como `América` y `america`. El resumen muestra la primera grafía encontrada.
+El CSV está codificado en UTF-8. Su encabezado es `nombre,poblacion,superficie,continente`. El dataset de prueba contiene 259 registros, incluido `mamam`. El programa carga 238 y omite 21 por campos vacíos o valores numéricos inválidos. Con este archivo se pueden realizar consultas. También se pueden guardar altas y actualizaciones. Las filas omitidas quedan fuera del archivo guardado. Las estadísticas incluyen los duplicados y los nombres ficticios que pasan la validación. Tanto el filtro como el conteo por continente agrupan variantes como `América` y `america`. El resumen muestra la primera grafía encontrada con mayúscula inicial.
 
 ## Ejemplos de entrada y salida
 
@@ -45,35 +45,31 @@ continente: america
 **Filtrar por superficie exacta.** Ingresá `4` (filtrar), `3` (superficie), `377975` como mínimo y `377975` como máximo. El único resultado es:
 
 ```text
-{'nombre': 'Japón', 'poblacion': 125800000, 'superficie': 377975, 'continente': 'Asia'}
+Japón
+poblacion: 125800000
+superficie: 377975 km²
+continente: Asia
 ```
 
 **Consultar las estadísticas.** Con el CSV inicial, ingresá `6`:
 
 ```text
 estadisticas
-mayor poblacion: Mundo
-menor poblacion: ErrorMuchosCampos
-promedio de poblacion: 73707555.65
-promedio de superficie: 2898895.83
+mayor poblacion: China
+menor poblacion: FinDelArchivo
+promedio de poblacion: 42429453.36
+promedio de superficie: 787732.18
 paises por continente:
 América : 41
-Asia : 50
-Europa : 59
+Asia : 49
+Europa : 58
 Oceanía : 19
 África : 65
 Amérika : 1
 Fantasia : 2
-Asia/Europa : 1
-Amercia : 1
+Asia/europa : 1
 Euro : 1
 Antártida : 1
-3 : 1
-america del norte : 1
-Europa/Asia : 1
-Gran Bretaña : 1
-Tierra : 1
-Tierra Media : 2
 ```
 
 ## Participación de los integrantes
