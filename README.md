@@ -4,6 +4,8 @@ Trabajo Práctico Integrador de Programación 1 · Tecnicatura Universitaria en 
 
 Esta aplicación de consola permite registrar países, actualizar su población y superficie, buscar por nombre, filtrar registros, ordenarlos y calcular estadísticas sobre el conjunto cargado. Guarda las altas y actualizaciones en `paises.csv`, junto al programa.
 
+[Ver el video demostrativo del TPI en YouTube](https://youtu.be/rghqvmL_8bY?si=uBgusEEaX9R-sSu6)
+
 ## Instalación y uso
 
 Descargá el repositorio (en GitHub, **Code → Download ZIP**) y descomprimilo, o clonalo con Git. Abrí una terminal en la carpeta que contiene `tpi_programacion.py`. Necesitás Python 3.10 o superior por el uso de `match`.
